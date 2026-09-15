@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.JavascriptExecutor;
@@ -22,18 +23,10 @@ public class BaseTest {
     @Before
     public void setUp() {
         // local
-        //driver = new ChromeDriver();
-        
-        //distant
-        URL gridUrl = null;
-        try {
-            gridUrl = new URL("http://selenium-hub:4444/wd/hub");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        driver = new ChromeDriver();
+
         ChromeOptions option = new ChromeOptions();
         option.addArguments("--start-maximized");
-        driver = new RemoteWebDriver(gridUrl, option);
 
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
